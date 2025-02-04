@@ -58,6 +58,10 @@ public class Transaction_Handling {
                 System.out.println("Transaction Failed");
             }
 
+            withdrawlStatement.close();
+            depositStatement.close();
+            connection.close();
+
         }catch(SQLException e)
         {
             connection.rollback();
