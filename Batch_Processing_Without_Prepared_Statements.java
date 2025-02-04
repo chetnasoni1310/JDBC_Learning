@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
 
-public class Bath_Processing_Without_Prepared_Statements {
+public class Batch_Processing_Without_Prepared_Statements {
     public static void main(String[] args) {
 
 
