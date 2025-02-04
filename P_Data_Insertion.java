@@ -1,12 +1,12 @@
 import java.sql.*;
 
-public class Prepared_Statements {
+public class P_Data_Insertion {
     public static void main(String[] args) {
 
         String url="jdbc:mysql://localhost:3306/students";
         String username="root";
         String password="2121912";
-        String query="SELECT * FROM employee where name = ? ;";
+        String query="INSERT into employee Values(?,?,?,?);";
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -19,26 +19,21 @@ public class Prepared_Statements {
             Connection connection= DriverManager.getConnection(url,username,password);
             System.out.println("Connection established successfully");
             PreparedStatement preparedStatement=connection.prepareStatement(query);
-            preparedStatement.setString(1,"Chetna");
-            ResultSet rs=preparedStatement.executeQuery();
 
-            while(rs.next())
+            preparedStatement.setInt(1,5);
+            preparedStatement.setString(2,"Poonam");
+            preparedStatement.setString(3,"Artist");
+            preparedStatement.setDouble(4,8.0);
+
+            int rowsAffected=preparedStatement.executeUpdate();
+
+            if(rowsAffected>0)
             {
-                int id=rs.getInt("id");
-                String name=rs.getString("name");
-                String title=rs.getString("title");
-                Double salary=rs.getDouble("salary");
-
-                System.out.println();
-                System.out.println("********************************");
-
-                System.out.println("ID: "+id);
-                System.out.println("Name: "+name);
-                System.out.println("Title: "+title);
-                System.out.println("Salary: "+salary);
-
+                System.out.println("Successfull Insertion");
+            }else{
+                System.out.println("Failed Insertion");
             }
-            rs.close();
+
             preparedStatement.close();
             connection.close();
             System.out.println();
